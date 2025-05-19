@@ -1,0 +1,42 @@
+--Legendary Merchant
+SpeakerCreate("LM_speaker");
+SpeakerSetMoves("LM_speaker",false);
+SpeakerAddDialogueChoice("LM_speaker",DIALOGUE_TYPE_back,"Bye.");
+SpeakerAddDialogueChoice("LM_speaker",DIALOGUE_TYPE_trade,"Trade");
+SpeakerAddDialogueChoice("LM_speaker",DIALOGUE_TYPE_question,"I have some questions.");
+SpeakerAddQuestion(
+    "LM_speaker","Who are you exactly?",
+    "I am a legendary hunter. But I have accumulated too many rubles and items, so I came out to sell them. I never deal with ordinary items, but with very rare items."
+);
+SpeakerAddQuestion(
+    "LM_speaker",
+    "How do I trade with you?",
+    "I've dealt with many cases with Barman. Depending on how Loner sees you, the items I can give you will vary. If you complete quests and buy or sell items to Barman or me, your reputation will naturally increase. And by the way, I like blue cigarettes..."
+)
+
+QuestCreate("q1")
+QuestAddObjective(
+    "q1",
+    QuestObjectiveTypeKill(
+        1,
+        "wolf",
+        map_FOREST,
+        ["wolf"],
+        0,
+        ""
+));
+SpeakerAddQuest("LM_speaker","q1")
+
+
+NpcCopy("LM","barman")
+
+SpriteLoad("s_hunter_cyclops_idle","npcs/s_hunter_cyclops_idle.png",2,false,8,8);
+NpcSetSpriteIdle("LM","s_hunter_cyclops_idle");
+
+NpcSetSpeaker("LM","LM_speaker");
+NpcSetTraderId("LM","LM_trader");
+TraderCreate("LM_trader");
+TraderSetFormatPages("LM_trader",true);
+TraderSetMoney("LM_trader",true);
+NpcSetImageSpeed("LM",0.1,0.1);
+NpcSetName("LM","Legendary Merchant");
