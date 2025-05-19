@@ -1,0 +1,13 @@
+-- Factions
+
+-- Create our NPCs
+ScriptExecute("scripts/npcs.script");
+
+-- Create our trades
+ScriptExecute("scripts/trades.script");
+
+
+-- Hub Changes
+EventAssignFunction("enter_hub",func() {
+	NpcSpawn("LM",720,1290)
+});
